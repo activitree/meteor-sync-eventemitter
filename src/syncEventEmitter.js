@@ -1,6 +1,6 @@
-import { getGlobal } from 'meteor-globals';
+import { getGlobal } from 'meteor-globals'
 
-const Meteor = getGlobal('meteor', 'Meteor');
+const Meteor = getGlobal('meteor', 'Meteor')
 
 /**
  * Save a event
@@ -40,32 +40,32 @@ const Meteor = getGlobal('meteor', 'Meteor');
  */
 export default function syncEventEmitter(syncer, emitFn = 'emit') {
   return function decorator(EV) {
-    if (Meteor.isClient) return EV;
+    if (Meteor.isClient) return EV
     return class SyncedEventEmitter extends EV {
       constructor(...constructorArgs) {
-        super(...constructorArgs);
-        this.syncedIds = [];
+        super(...constructorArgs)
+        this.syncedIds = []
 
         syncer.onInsert((id, args) => {
           if (this.syncedIds.indexOf(id) > -1) {
             // delete if event is from current instance
-            this.syncedIds = this.syncedIds.filter(item => item !== id);
-            syncer.remove(id);
-            return;
+            this.syncedIds = this.syncedIds.filter(item => item !== id)
+            syncer.remove(id)
+            return
           }
 
           // emit the event if it comes from another instance
-          super[emitFn](...args);
-        });
+          super[emitFn](...args)
+        })
       }
       [emitFn](...args) {
         // save the event
         syncer.insert(args).then((id) => {
-          this.syncedIds.push(id);
+          this.syncedIds.push(id)
           // emit the original event
-          super[emitFn](...args);
-        });
+          super[emitFn](...args)
+        })
       }
-    };
-  };
+    }
+  }
 }

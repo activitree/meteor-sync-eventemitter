@@ -1,6 +1,6 @@
 {
-  "name": "meteor-sync-eventemitter",
-  "version": "1.0.2",
+  "name": "@activitree/meteor-sync-eventemitter",
+  "version": "1.0.3",
   "description": "Allows syncing event emitter events over multiple meteor servers.",
   "main": "dist/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maxnowack/meteor-sync-eventemitter.git"
+    "url": "git://github.com/activitree/meteor-sync-eventemitter.git"
   },
   "author": "Max Nowack <max@unsou.de>",
   "license": "MIT",
@@ -28,7 +28,7 @@
     "eventemitter"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=14"
   },
   "babel": {
     "presets": [
@@ -36,7 +36,7 @@
         "env",
         {
           "targets": {
-            "node": "8"
+            "node": "14"
           }
         }
       ]
@@ -54,10 +54,10 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.1.0",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^5.14.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0"
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
   }
 }
